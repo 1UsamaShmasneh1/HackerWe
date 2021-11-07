@@ -62,6 +62,20 @@ namespace HackerWeUi
             };
         }
 
+        private void ClientsButton_Click(object sender, EventArgs e)
+        {
+            HackerWeLibraryPanel.Controls.Clear();
+            ClientUserControl clientUserControl = new ClientUserControl();
+            ShowUserControle<ClientUserControl>(clientUserControl);
+            clientUserControl.ClientSaved += (client) =>
+            {
+                SendEmail("us.05.07.1991@gmail.com", "sent", "mail has been sent");
+                MessageToolStripStatusLabel.Text = "Client saved successfully " + client.Id;
+                timer.Start();
+                BorowingButton_Click(new object(), new EventArgs());
+            };
+        }
+
         private void SendEmail(string recipientMail, string subject, string body)
         {
             MailMessage message = new MailMessage("us.05.07.91@gmail.com", recipientMail);
@@ -76,20 +90,6 @@ namespace HackerWeUi
             smtpClient.UseDefaultCredentials = true;
             //smtpClient.Send(message);
             //smtpClient.Send("us.05.07.91@gmail.com", recipientMail, subject, body);
-        }
-
-        private void ClientsButton_Click(object sender, EventArgs e)
-        {
-            HackerWeLibraryPanel.Controls.Clear();
-            ClientUserControl clientUserControl = new ClientUserControl();
-            ShowUserControle<ClientUserControl>(clientUserControl);
-            clientUserControl.ClientSaved += (client) =>
-            {
-                SendEmail("us.05.07.1991@gmail.com", "sent", "mail has been sent");
-                MessageToolStripStatusLabel.Text = "Client saved successfully " + client.Id;
-                timer.Start();
-                BorowingButton_Click( new object(), new EventArgs() );
-            };
         }
 
         private void ShowUserControle<T>(T t) where T : UserControl
