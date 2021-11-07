@@ -41,28 +41,25 @@ namespace HackerWeUi
         {
             HackerWeLibraryPanel.Controls.Clear();
             BooksUserControle booksUserControle = new BooksUserControle();
+            ShowUserControle<BooksUserControle>(booksUserControle);
             booksUserControle.BookSaved += (book) =>
             {                
                 MessageToolStripStatusLabel.Text = "Book saved successfully " + book.Id;
                 timer.Start();
-            };
-            booksUserControle.Parent = HackerWeLibraryPanel;
-            booksUserControle.Show();            
+            };            
         }
 
         private void BorowingButton_Click(object sender, EventArgs e)
         {
             HackerWeLibraryPanel.Controls.Clear();
             BorrowingUserControl borrowingUserControl = new BorrowingUserControl();
+            ShowUserControle<BorrowingUserControl>(borrowingUserControl);
             borrowingUserControl.BorrowingSaved += (borrowing) =>
             {
                 SendEmail("us.05.07.1991@gmail.com", "sent", "mail has been sent");
                 MessageToolStripStatusLabel.Text = "Borowing saved successfully " + borrowing.Id;
                 timer.Start();
             };
-            borrowingUserControl.Parent = HackerWeLibraryPanel;
-
-            borrowingUserControl.Show();
         }
 
         private void SendEmail(string recipientMail, string subject, string body)
