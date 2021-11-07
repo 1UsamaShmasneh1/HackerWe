@@ -81,5 +81,19 @@ namespace HackerWeUi
             //smtpClient.Send("us.05.07.91@gmail.com", recipientMail, subject, body);
         }
 
+        private void ClientsButton_Click(object sender, EventArgs e)
+        {
+            HackerWeLibraryPanel.Controls.Clear();
+            ClientUserControl clientUserControl = new ClientUserControl();
+            clientUserControl.ClientSaved += (client) =>
+            {
+                SendEmail("us.05.07.1991@gmail.com", "sent", "mail has been sent");
+                MessageToolStripStatusLabel.Text = "Client saved successfully " + client.Id;
+                timer.Start();
+            };
+            clientUserControl.Parent = HackerWeLibraryPanel;
+
+            clientUserControl.Show();
+        }
     }
 }

@@ -14,6 +14,11 @@ namespace HackerWe.Entities
         public short NumberOfCopies { get; set; }
         public short NumberOfBorrowedOut { get; set; }
 
+        public Book()
+        {
+            ISBN = Guid.NewGuid();
+        }
+
         public string ToCSV()
         {
             string str;

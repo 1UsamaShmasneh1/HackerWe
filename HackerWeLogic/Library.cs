@@ -45,6 +45,12 @@ namespace HackerWeLogic
             var jsonSTR = JsonConvert.SerializeObject(Books);
             File.WriteAllText(@"BorrowingJSON.json", jsonSTR);
         }
+
+        public static void SaveClientsJSON()
+        {
+            var jsonSTR = JsonConvert.SerializeObject(Clients);
+            File.WriteAllText(@"ClientsJSON.json", jsonSTR);
+        }
         #endregion
 
         public static void ReadBooksFromJson()

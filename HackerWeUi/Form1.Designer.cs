@@ -56,6 +56,7 @@
             this.ClientsButton.TabIndex = 1;
             this.ClientsButton.Text = "Clients";
             this.ClientsButton.UseVisualStyleBackColor = true;
+            this.ClientsButton.Click += new System.EventHandler(this.ClientsButton_Click);
             // 
             // BorowingButton
             // 
