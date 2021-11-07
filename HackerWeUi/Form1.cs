@@ -77,7 +77,7 @@ namespace HackerWeUi
                 EnableSsl = true,
             };
             smtpClient.UseDefaultCredentials = true;
-            smtpClient.Send(message);
+            //smtpClient.Send(message);
             //smtpClient.Send("us.05.07.91@gmail.com", recipientMail, subject, body);
         }
 
@@ -85,15 +85,20 @@ namespace HackerWeUi
         {
             HackerWeLibraryPanel.Controls.Clear();
             ClientUserControl clientUserControl = new ClientUserControl();
+            ShowUserControle<ClientUserControl>(clientUserControl);
             clientUserControl.ClientSaved += (client) =>
             {
                 SendEmail("us.05.07.1991@gmail.com", "sent", "mail has been sent");
                 MessageToolStripStatusLabel.Text = "Client saved successfully " + client.Id;
                 timer.Start();
+                BorowingButton_Click( new object(), new EventArgs() );
             };
-            clientUserControl.Parent = HackerWeLibraryPanel;
+        }
 
-            clientUserControl.Show();
+        private void ShowUserControle<T>(T t) where T : UserControl
+        {
+            t.Parent = HackerWeLibraryPanel;
+            t.Show();
         }
     }
 }
